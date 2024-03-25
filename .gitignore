@@ -1,0 +1,10 @@
+.DS_Store
+__pycache__/
+classify_image_graph_def.pb
+checkpoint*
+out_ckpt
+ijepa_ckpt
+ijepa_ckpt/jepa-latest-16-256.pth.tar
+ijepa_ckpt/jepa-latest-16.pth.tar
+pymp*
+*.egg-info

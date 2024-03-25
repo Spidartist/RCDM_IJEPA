@@ -1,0 +1,1 @@
+python run_with_submitit.py --nodes 1 --ngpus 1 --use_volta32 $MODEL_FLAGS $TRAIN_FLAGS --feat_cond --data_dir "/mnt/ducntm/endoscopy/DATA/" --type_model ijepa --out_dir checkpoint6 --lr_anneal_steps 250000 --json_dir "/mnt/tuyenld/mae/data_annotation/pretrain.json"

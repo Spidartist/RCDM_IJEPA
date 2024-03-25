@@ -1,0 +1,1 @@
+python scripts/image_sample.py --type_model dino --num_images 2 --data_dir "/mnt/ducntm/endoscopy/DATA/UT thuc quan/20211021 UT thuc quan/"

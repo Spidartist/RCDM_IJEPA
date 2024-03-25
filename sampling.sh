@@ -1,0 +1,1 @@
+python scripts/image_sample.py $MODEL_FLAGS --batch_size 5 --num_images 2 --timestep_respacing 100 --data_dir "/mnt/ducntm/endoscopy/DATA" --type_model ijepa --out_dir "sampling/" --json_dir "/mnt/tuyenld/mae/data_annotation/finetune.json" 

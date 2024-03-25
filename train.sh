@@ -1,0 +1,1 @@
+python run_with_submitit.py --ngpus 1 --nodes 1 --data_dir "/mnt/ducntm/endoscopy/DATA/UT thuc quan/20211021 UT thuc quan/" --lr 1e-4 --batch_size 8 --type_model ijepa --out_dir "/mnt/quanhd/RCDM/checkpoint1/"
