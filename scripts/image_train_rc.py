@@ -24,7 +24,7 @@ import time
 def main(args):
     # Init distributed setup
     os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"   
-    os.environ["CUDA_VISIBLE_DEVICES"]="0"
+    os.environ["CUDA_VISIBLE_DEVICES"]="1"
     device = th.device('cuda:0')
     th.cuda.set_device(device)
     dist_util.init_distributed_mode(args)
@@ -63,7 +63,6 @@ def main(args):
     )
 
     logger.log("training...")
-
 
     TrainLoop(
         model=model,
@@ -127,7 +126,8 @@ def create_argparser():
         microbatch=-1,  # -1 disables microbatches
         ema_rate="0.9999",  # comma-separated list of EMA values
         log_interval=10,
-        save_interval=10000,
+        # save_interval=10000,
+        save_interval=50000,
         resume_checkpoint="",
         use_fp16=False,
         fp16_scale_growth=1e-3,

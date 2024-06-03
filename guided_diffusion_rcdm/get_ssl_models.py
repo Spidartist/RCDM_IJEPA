@@ -197,8 +197,8 @@ def get_model(model="dino", use_head=False, reconstruct=False):
 
     elif model == "ijepa":
         if not reconstruct:
-            # embedding_model = vit_base(patch_size=16, img_size=[256])
-            embedding_model = vit_base(patch_size=16, img_size=[224])
+            embedding_model = vit_base(patch_size=16, img_size=[256])
+            # embedding_model = vit_base(patch_size=16, img_size=[224])
 
             ckpt = torch.load("/mnt/quanhd/RCDM/ijepa_ckpt/jepa-latest-16.pth.tar")
             # ckpt = torch.load("/mnt/quanhd/RCDM/ijepa_ckpt/jepa-latest-16-256.pth.tar")
@@ -216,7 +216,7 @@ def get_model(model="dino", use_head=False, reconstruct=False):
                                     depth=12,
                                     num_heads=embedding_model.num_heads,
                                     )
-            ckpt = torch.load("/mnt/quanhd/RCDM/ijepa_ckpt/jepa-latest-16-256.pth.tar")
+            ckpt = torch.load("/mnt/quanhd/RCDM_IJEPA/ijepa_ckpt/jepa-latest-16-256.pth.tar")
 
             msg = embedding_model.load_state_dict(ckpt["target_encoder"])
             msg2 = predictor.load_state_dict(ckpt["predictor"])
