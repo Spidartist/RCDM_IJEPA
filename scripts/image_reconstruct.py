@@ -56,7 +56,7 @@ def main(args):
 
 
     os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"   
-    os.environ["CUDA_VISIBLE_DEVICES"]="1"
+    os.environ["CUDA_VISIBLE_DEVICES"]="0"
     device = th.device('cuda:0')
     th.cuda.set_device(device)
     args.gpu = 0
@@ -164,6 +164,7 @@ def main(args):
         masked_batch_small_vis = masked_batch_small_vis.permute(0, 2, 3, 1)
         masked_batch_small_vis = masked_batch_small_vis.contiguous()
         all_images.extend([sample.unsqueeze(0).cpu().numpy() for sample in masked_batch_small_vis])
+        tmp_masked_batch_small_vis = masked_batch_small_vis[0].unsqueeze(0).cpu().numpy()
 
         # Ảnh masked pred
         batch = ((batch_small[0:1] + 1) * 127.5).clamp(0, 255).to(th.uint8)
@@ -176,6 +177,8 @@ def main(args):
         sample = sample.permute(0, 2, 3, 1)
         samples = sample.contiguous()
         all_images.extend([sample.unsqueeze(0).cpu().numpy() for sample in samples])
+        # all_images.extend([sample.unsqueeze(0).cpu().numpy() + tmp_masked_batch_small_vis for sample in samples])
+
 
         logger.log(f"created {len(all_images) * args.batch_size} samples")
         num_current_samples += 1
