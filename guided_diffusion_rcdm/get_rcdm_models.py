@@ -44,7 +44,8 @@ def get_dict_rcdm_model(model="dino", use_head=False, reconstruct=False):
         if not reconstruct:
             trained_model = torch.load("/mnt/quanhd/RCDM/checkpoint4/model130000.pt")
         else:
-            trained_model = torch.load("/mnt/quanhd/RCDM/checkpointr2/ema_0.9999_340000.pt")
+            # trained_model = torch.load("/mnt/quanhd/RCDM/checkpointr2/ema_0.9999_340000.pt")
+            trained_model = torch.load("/mnt/quanhd/RCDM_IJEPA/checkpointr3/ema_0.9999_350000.pt")
         return trained_model
 
     else:

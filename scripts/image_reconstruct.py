@@ -126,9 +126,9 @@ def main(args):
 
     while num_current_samples < args.num_images:
         batch_small, batch, cond, masks_enc, masks_pred, masks_C, masks_eC, batch_small_vis = next(data)
-        print(f"masks_eC shape: {np.shape(masks_eC)}")
-        print(f"Batch small shape: {batch_small.shape}")
-        print(f"Batch shape: {batch.shape}")
+        # print(f"masks_eC shape: {np.shape(masks_eC)}")
+        # print(f"Batch small shape: {batch_small.shape}")
+        # print(f"Batch shape: {batch.shape}")
         batch = batch[0:1].repeat(args.batch_size, 1, 1, 1).to(device, non_blocking=True)
         masks_enc = [u.to(device) for u in masks_enc]
         masks_pred = [u.to(device) for u in masks_pred]

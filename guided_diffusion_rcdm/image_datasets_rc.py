@@ -108,7 +108,7 @@ def process_path(old_path, data_dir):
 def _get_img_paths_from_json(json_path, data_dir):
     f = open(json_path)
     data = json.load(f)
-    img_paths = [process_path(elem["img_path"], data_dir) for elem in data["data_list"]]
+    img_paths = [os.path.join(data_dir, elem) for elem in data["train"]]
     return img_paths
 
 

@@ -551,8 +551,8 @@ class MaskCollator(object):
         collated_masks_eC = [[cm[:min_keep_enc] for cm in cm_list] for cm_list in collated_masks_eC]
         collated_masks_eC = th.utils.data.default_collate(collated_masks_eC)
 
-        print(f"Pre collated_batch_small.shape: {collated_batch_small.shape}")
-        print(f"collated_masks_C.shape: {np.shape(collated_masks_C)}")
+        # print(f"Pre collated_batch_small.shape: {collated_batch_small.shape}")
+        # print(f"collated_masks_C.shape: {np.shape(collated_masks_C)}")
 
         collated_batch_small_vis = collated_batch_small
         
