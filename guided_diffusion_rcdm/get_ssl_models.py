@@ -200,7 +200,7 @@ def get_model(model="dino", use_head=False, reconstruct=False):
             embedding_model = vit_base(patch_size=16, img_size=[256])
             # embedding_model = vit_base(patch_size=16, img_size=[224])
 
-            ckpt = torch.load("/mnt/quanhd/RCDM/ijepa_ckpt/jepa-latest-16.pth.tar")
+            ckpt = torch.load("/mnt/quanhd/ijepa_endoscopy_pretrained/jepa-ep500.pth.tar")
             # ckpt = torch.load("/mnt/quanhd/RCDM/ijepa_ckpt/jepa-latest-16-256.pth.tar")
 
             msg = embedding_model.load_state_dict(ckpt["target_encoder"])
@@ -208,7 +208,7 @@ def get_model(model="dino", use_head=False, reconstruct=False):
             print(msg)
             return Wrapper(embedding_model, None, use_head)
         else:
-            embedding_model = vit_base(patch_size=16, img_size=[256]) 
+            embedding_model = vit_base(patch_size=16, img_size=[224]) 
             predictor = vit_predictor(
                                     num_patches=embedding_model.patch_embed.num_patches,
                                     embed_dim=embedding_model.embed_dim,
@@ -216,7 +216,8 @@ def get_model(model="dino", use_head=False, reconstruct=False):
                                     depth=12,
                                     num_heads=embedding_model.num_heads,
                                     )
-            ckpt = torch.load("/mnt/quanhd/RCDM_IJEPA/ijepa_ckpt/jepa-latest-16-256.pth.tar")
+            ckpt = torch.load("/mnt/quanhd/ijepa_stable/logs_rgst/jepa-ep150.pth.tar")
+            # ckpt = torch.load("/mnt/quanhd/RCDM_IJEPA/ijepa_ckpt/jepa-latest-16-256.pth.tar")
 
             msg = embedding_model.load_state_dict(ckpt["target_encoder"])
             msg2 = predictor.load_state_dict(ckpt["predictor"])

@@ -56,7 +56,7 @@ def main(args):
 
 
     os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"   
-    os.environ["CUDA_VISIBLE_DEVICES"]="0"
+    os.environ["CUDA_VISIBLE_DEVICES"]="1"
     device = th.device('cuda:0')
     th.cuda.set_device(device)
     args.gpu = 0

@@ -24,7 +24,7 @@ import time
 def main(args):
     # Init distributed setup
     os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"   
-    os.environ["CUDA_VISIBLE_DEVICES"]="1"
+    os.environ["CUDA_VISIBLE_DEVICES"]="0"
     device = th.device('cuda:0')
     th.cuda.set_device(device)
     dist_util.init_distributed_mode(args)

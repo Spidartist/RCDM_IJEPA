@@ -9,7 +9,7 @@ import torch.nn as nn
 from guided_diffusion_rcdm import dist_util, logger
 from guided_diffusion_rcdm.image_datasets import load_data
 # from guided_diffusion_rcdm.image_datasets_rc import load_data
-
+import os
 from guided_diffusion_rcdm.resample import create_named_schedule_sampler
 from guided_diffusion_rcdm.script_util import (
     model_and_diffusion_defaults,
@@ -23,15 +23,20 @@ from torch.cuda.amp import autocast
 import time
 
 def main(args):
+    print("Hello")
     # Init distributed setup
+    os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"   
+    os.environ["CUDA_VISIBLE_DEVICES"]="0"
+    device = th.device('cuda:0')
+    th.cuda.set_device(device)
     dist_util.init_distributed_mode(args)
     logger.configure(dir=args.out_dir)
 
     # Load SSL model
     if args.feat_cond:
         ssl_model = get_model(args.type_model, args.use_head).to(args.gpu).eval()
-        ssl_dim = ssl_model(th.zeros(1,3,224,224).to(args.gpu)).size(1)
-        # ssl_dim = ssl_model(th.zeros(1,3,256,256).to(args.gpu)).size(1)
+        # ssl_dim = ssl_model(th.zeros(1,3,224,224).to(args.gpu)).size(1)
+        ssl_dim = ssl_model(th.zeros(1,3,256,256).to(args.gpu)).size(1)
 
         print("SSL DIM:", ssl_dim)
         for _,p in ssl_model.named_parameters():
@@ -117,7 +122,7 @@ def create_argparser():
         microbatch=-1,  # -1 disables microbatches
         ema_rate="0.9999",  # comma-separated list of EMA values
         log_interval=10,
-        save_interval=10000,
+        save_interval=50000,
         resume_checkpoint="",
         use_fp16=False,
         fp16_scale_growth=1e-3,
